@@ -1,0 +1,300 @@
+/* Reset */
+* {
+  /* padding will not add to the ACTUALLY WIDTH OF THE BOX */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7em;
+  transition: background-color 1.7s ease;
+}
+h6 {
+  margin: 10px auto;
+  text-align: center;
+  background-color: #313131;
+  border-radius: 5px;
+  padding: 1rem;
+  color: white;
+  max-width: 80%;
+}
+h6 > span {
+  color: #2de11d;
+}
+h4 {
+  margin: 2px 0px 40px 2px;
+  background-color: #0f1313;
+  padding: 3px;
+  color: #2de11d;
+}
+h3 {
+  text-align: center;
+  margin: 20 0 0 0;
+}
+
+/* Hide everything at start up */
+#renameFileCabForm,
+#headingMainFolder,
+#headingSubFolder,
+#headingNote,
+#mainFolderForm,
+#subFolderForm,
+#noteForm,
+#settingsForm {
+  display: none;
+}
+
+#fileCabHeading,
+#headingMainFolder,
+#headingSubFolder,
+#headingNote,
+.setFlex,
+.note {
+  box-shadow: 3px 2px 5px 0px black;
+}
+#headingNote {
+  margin-bottom: 44px;
+}
+.active {
+  color: white;
+  box-shadow: 3px 2px 4px white;
+  transform: scale(1.1);
+}
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 3px;
+  margin: 3px;
+}
+
+nav ul li {
+  list-style: none;
+  background-color: #d0215cbd;
+  color: rgb(0, 0, 0);
+  padding: 3px 10px;
+  margin: 4px 10px;
+  border-radius: 10px 10px 0px 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  transition: box-shadow 0.7s 1.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+  transition: transform 0.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+
+nav ul li:hover {
+  color: rgb(255, 255, 255);
+}
+.fas,
+.far {
+  transition: transform 0.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+.fas:hover,
+.far:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+input[type="radio"]:hover {
+  cursor: pointer;
+}
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+.fileCab:hover {
+  cursor: pointer;
+}
+.main:hover {
+  cursor: pointer;
+}
+.sub:hover {
+  cursor: pointer;
+}
+
+#myTextArea {
+  margin: 10px auto;
+  width: 98%;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 20px;
+}
+#noteList {
+  margin: 10px auto;
+  width: 98%;
+}
+.note {
+  white-space: pre;
+  background-color: #202020;
+  border-radius: 10px 10px 0px 0px;
+  padding: 14px;
+  overflow: auto;
+}
+img {
+  border-radius: 20px;
+}
+/* CODE FOR MESSAGES  */
+.success,
+.error {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  border-radius: 25px;
+  margin: auto;
+}
+.error {
+  color: red;
+}
+.success {
+  color: #2de11d;
+}
+.black {
+  background-color: black;
+}
+.redBorder {
+  border: 20px solid red;
+}
+.greenBorder {
+  border: 20px solid #2de11d;
+}
+/* END CODE FOR MESSAGES  */
+.addSpace {
+  height: 750px;
+}
+
+#mainFolderForm,
+#subFolderForm,
+#renameFileCabForm,
+#settingsForm {
+  max-width: 70%;
+  margin: 14px auto;
+}
+#noteForm {
+  max-width: 97%;
+  margin: 0 auto;
+}
+
+#addWindow {
+  background-color: blueviolet;
+  margin-top: 40px;
+}
+p {
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+/* settings form  */
+#settingsForm {
+  background-color: white;
+}
+​ input[type="radio"] {
+  margin: 10px;
+  font-size: 16px;
+}
+.deleteFile {
+  color: red;
+  margin: 12px;
+  transition: color 0.7s ease;
+  transition: transform 0.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+.deleteFile:hover {
+  transform: scale(1.3);
+  color: #830713;
+}
+.autoLoad {
+  color: #007bff;
+  font-size: 14px;
+}
+#autoLoadList {
+  margin-left: 40px;
+}
+#settingsForm {
+  border: 20px solid white;
+  border-radius: 20px;
+}
+.radio {
+  display: flex;
+  flex-direction: row;
+}
+.radio div {
+  margin: 7px;
+}
+.setFlex {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: #aea9ad;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 22px;
+  box-shadow: 5px 4px 9px black;
+}
+@media screen and (max-width: 940px) {
+  .radio {
+    /* display: flex; */
+    flex-direction: column;
+  }
+}
+
+#autoLoadList {
+  margin-left: 45px;
+}
+.delete-item {
+  margin: 0 16px;
+  color: #161313;
+}
+.delete-item:hover {
+  margin: 0 16px;
+  color: white;
+}
+.moveUp {
+  color: green;
+  display: inline;
+}
+.moveUp:hover {
+  cursor: pointer;
+}
+.moveDown {
+  color: blue;
+  display: inline;
+}
+.moveDown:hover {
+  cursor: pointer;
+}
+
+.trash {
+  margin-left: 16px;
+  color: black;
+  transition: color 0.3s, transform 0.7s;
+  transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+.trash:hover {
+  color: white;
+  transform: scale(1.3);
+}
+/* below is for editing the note  */
+.modal-title {
+  text-align: center;
+  background-color: white;
+  color: #2de11d;
+}
+.edit-note {
+  color: #2de11d;
+  margin-left: 20px;
+  background-color: transparent;
+  transition: color 0.3s, transform 0.7s;
+  transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+.edit-note:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
+}
+.modal-header {
+  display: flex;
+  justify-content: center;
+}

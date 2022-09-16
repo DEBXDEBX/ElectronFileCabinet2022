@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+   
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+  
+
+    <!-- My CSS File -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link id="blankCssLink" rel="stylesheet" type="text/css" href="" />
+
+    <title>File Cabinet's</title>
+  </head>
+  <body>
+    <audio id="addAudio">
+      <source src="assets/sound/add.wav" type="audio/wav" />
+    </audio>
+    <audio id="addImageAudio">
+      <source src="assets/sound/addImage.wav" type="audio/wav" />
+    </audio>
+    <audio id="deleteAudio">
+      <source src="assets/sound/delete.wav" type="audio/wav" />
+    </audio>
+    <audio id="warningEmptyAudio">
+      <source src="assets/sound/warningEmpty.wav" type="audio/wav" />
+    </audio>
+    <audio id="warningSelectAudio">
+      <source src="assets/sound/warningSelect.wav" type="audio/wav" />
+    </audio>
+    <audio id="warningNameTakenAudio">
+      <source src="assets/sound/warningNameTaken.wav" type="audio/wav" />
+    </audio>
+    <audio id="tabAudio">
+      <source src="assets/sound/tab.wav" type="audio/wav" />
+    </audio>
+    <audio id="clickAudio">
+      <source src="assets/sound/click.wav" type="audio/wav" />
+    </audio>
+    <audio id="btnAudio">
+      <source src="assets/sound/btn.wav" type="audio/wav" />
+    </audio>
+    <audio id="cancelAudio">
+      <source src="assets/sound/cancel.wav" type="audio/wav" />
+    </audio>
+    <audio id="wrongAudio">
+      <source src="assets/sound/wrong.wav" type="audio/wav" />
+    </audio>
+    <header>
+      <h6 id="fileCabHeading">File Cabinet</h6>
+      <nav>
+        <ul id="fileCabList"></ul>
+      </nav>
+    </header>
+
+    <form id="renameFileCabForm">
+      <div class="form-group">
+        <input
+          id="fileCabRenameInput"
+          type="text"
+          autofocus
+          class="form-control"
+          placeholder="Rename File Cabinet"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          id="renameFileCabSubmitBtn"
+          class="btn btn-primary form-control"
+          type="submit"
+          value="Rename File Cabinet"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          id="renameFileCabCancelBtn"
+          class="btn btn-warning form-control"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+
+    <section>
+      <h6 id="headingMainFolder">
+        Main Folder
+        <span id="mainFolderAddIcon"
+          ><i
+            data-toggle="tooltip"
+            title="Add Main Folder"
+            class="fas fa-folder-plus"
+          ></i
+        ></span>
+      </h6>
+
+      <nav>
+        <ul id="mainFolderList">
+        </ul>
+      </nav>
+
+      <form id="mainFolderForm">
+        <div class="form-group">
+          <input
+            id="mainFolderNameInput"
+            type="text"
+            autofocus
+            class="form-control"
+            placeholder="Main Folder Name"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            id="addMainFolderSubmitBtn"
+            class="btn btn-primary form-control"
+            type="submit"
+            value="Add Main Folder"
+          />
+        </div>
+
+        <div class="form-group">
+          <button
+            id="renameMainFolderBtn"
+            class="btn btn-primary form-control"
+          >Rename Main Folder</button>
+        </div>
+
+        <div class="form-group">
+          <button
+            id="mainFolderCancelBtn"
+            class="btn btn-warning form-control"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section id="subFolder">
+      <h6 id="headingSubFolder">
+        Sub Folder
+        <span id="subFolderAddIcon"
+          ><i
+            data-toggle="tooltip"
+            title="Add Sub Folder"
+            class="fas fa-folder-plus"
+          ></i
+        ></span>
+      </h6>
+
+      <nav>
+        <ul id="subFolderList"></ul>
+      </nav>
+
+      <form id="subFolderForm">
+        <div class="form-group">
+          <input
+            id="subFolderNameInput"
+            type="text"
+            autofocus
+            class="form-control"
+            placeholder="Sub Folder Name"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            id="addSubFolderSubmitBtn"
+            class="btn btn-primary form-control"
+            type="submit"
+            value="Add Sub Folder"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            id="renameSubfolderSubmitBtn"
+            class="btn btn-primary form-control"
+            type="submit"
+            value="Rename Sub Folder"
+          />
+        </div>
+
+        <div class="form-group">
+          <button
+            id="subFolderCancelBtn"
+            class="btn btn-warning form-control"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <h6 id="headingNote">
+      Notes
+      <span id="noteAddIcon"
+        ><i data-toggle="tooltip" title="Add Note" class="far fa-map"></i
+      ></span>
+    </h6>
+
+    <form id="noteForm">
+      <div class="form-group">
+        <textarea
+          class="form-control"
+          autofocus
+          wrap="hard"
+          placeholder="Enter notes here!"
+          id="noteTextAreaInput"
+          rows="10"
+          cols="200"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <input
+          id="addNoteSubmitBtn"
+          type="submit"
+          class="btn btn-primary form-control"
+          value="Add Note"
+        />
+      </div>
+
+      <div class="form-group">
+        <button
+          id="noteClearTextAreaBtn"
+          class="btn btn-dark form-control"
+          type="button"
+        >
+          Clear
+        </button>
+      </div>
+
+      <div class="form-group">
+        <button id="noteAddDateBtn" class="btn btn-info form-control" type="button">
+          Add Date
+        </button>
+      </div>
+
+      <div class="form-group">
+        <button
+          id="noteCancelBtn"
+          class="btn btn-warning form-control"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+
+    <section id="noteList">
+    </section>
+
+    <form id="settingsForm">
+      <!-- Theme -->
+      <div class="form-group setFlex">
+        <label for="theme">Pick a theme</label>
+
+        <div>
+          <input id="darkRadio" type="radio" name="theme" value="Dark" checked />
+          Dark
+        </div>
+        <div>
+          <input id="lightRadio" type="radio" name="theme" value="Light" /> Light
+        </div>
+      </div>
+
+
+
+  <!-- Font Size -->
+  <div class="form-group setFlex">
+    <label for="fontSize">Pick a font size</label>
+    <div class="radio">
+      <div>
+        <input id="xSmallRadio" type="radio" name="fontSize" value="x-small" />
+        x-small
+      </div>
+
+
+ <div>
+  <input id="smallRadio" type="radio" name="fontSize" value="small" /> small
+
+ </div>
+
+ <div>
+  <input
+    id="normalRadio"
+    type="radio"
+    name="fontSize"
+    value="normal"
+    checked
+  />
+  normal
+ </div>
+
+ <div>
+  <input id="largeRadio" type="radio" name="fontSize" value="large" /> large
+ </div>
+
+ <div>
+  <input id="xLargeRadio" type="radio" name="fontSize" value="x-large" />
+  x-large
+ </div>
+      
+
+    </div>
+  </div>
+
+
+
+
+      <div>
+        <input id="autoLoadCheckBox" type="checkbox" /> Auto Load File Cabinent's
+      </div>
+
+      <div>
+        <ol type="1" id="autoLoadList">
+        </ol>
+      </div>
+
+      <div class="form-group">
+        <button
+          class="btn btn-primary form-control"
+          id="settingsAddPathBtn"
+          type="button"
+        >
+          Add File To Auto Load List
+        </button>
+      </div>
+      <div class="form-group">
+        <input
+          id="saveSettingsSubmitBtn"
+          class="btn btn-success form-control"
+          type="submit"
+          value="Save Settings"
+        />
+      </div>
+
+      <div class="form-group">
+        <button
+          id="factoryResetBtn"
+          class="btn btn-danger form-control"
+          type="button"
+        >
+          Factory Reset
+        </button>
+      </div>
+
+      <div class="form-group">
+        <button
+          id="settingsCancelBtn"
+          class="btn btn-warning form-control"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Note</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                autofocus
+                wrap="hard"
+                placeholder="Enter notes here!"
+                id="noteModalTextArea"
+                rows="10"
+                cols="200"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+
+            <button
+              id="saveEditedNoteBtn"
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+            >
+              Save Edit
+            </button>
+            <button
+              id="editNoteCloseBtn"
+              type="button"
+              class="btn btn-warning"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of modal  -->
+
+    <!-- Message Modal -->
+    <div id="myMessageModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div id="messageBorder"  class="modal-content">
+          <div class="modal-body black">
+            <h3 id="displayMessage"></h3>
+          </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- end of modal  -->
+
+    <div class="addSpace"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="assets/js/lib/jquery351.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+
+
+    <!-- My JavaScript File -->
+    <script type="text/javascript" src="assets/js/settingsObj.js"></script>
+    <script type="text/javascript" src="assets/js/settingsStorage.js"></script>
+    <script type="text/javascript" src="assets/js/elements.js"></script>
+    <script type="text/javascript" src="assets/js/display.js"></script>
+    <script type="text/javascript" src="assets/js/fileCabinet.js"></script>
+    <script type="text/javascript" src="assets/js/note.js"></script>
+    <script type="text/javascript" src="assets/js/mainFolder.js"></script>
+    <script type="text/javascript" src="assets/js/subFolder.js"></script>
+    <script type="text/javascript" src="assets/js/renderer.js"></script>
+  </body>
+</html>

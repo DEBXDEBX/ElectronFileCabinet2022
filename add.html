@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- My CSS File -->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
+    <style>
+      body {
+        background: linear-gradient(to right, rgb(193 18 237), rgb(12 51 241));
+      }
+      #addWindow {
+        margin-top: 40px;
+      }
+    </style>
+    <title>New File Cabinet</title>
+  </head>
+  <body id="addWindow">
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <input
+            type="text"
+            autofocus
+            class="form-control"
+            id="name"
+            placeholder="New file cabinet name."
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="btn btn-primary form-control"
+            type="submit"
+            value="Add new file cabinet."
+          />
+        </div>
+        <div class="form-group">
+          <button
+            id="cancel"
+            class="btn btn-warning form-control"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        let { value } = document.querySelector("#name");
+        value = value.trim();
+        window.api.addFormSubmit(value);
+      });
+
+      document.querySelector("#cancel").addEventListener("click", (event) => {
+        window.api.addFormCancel();
+      });
+    </script>
+  </body>
+</html>

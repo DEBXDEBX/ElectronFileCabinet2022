@@ -1,0 +1,16 @@
+ get rid of developer tools
+ to package for windows run=>
+ replace ElectronTypeGame with your project name
+ electron-packager . ElectonTypGame --platform=win32 --icon=build/icon.ico
+
+ electron-packager is installed globally
+ 
+ it will create a new folder inYour Project=> \ElectonTypGame-win32-x64
+
+ move the whole folder to c drive and then create a shortcut to the .exe file
+
+
+
+needs done:::::::::::::::::::::::::::::::::::::::::::
+
+
