@@ -15,7 +15,7 @@ function createWindow() {
   mainWindow.loadFile("main.html");
   mainWindow.maximize();
   // Open the DevTools on start up for developement
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 }
 //When you click on new file cabinet
 function createNewFileCabinet() {
@@ -242,24 +242,24 @@ const menuTemplate = [
 //check for NODE_ENV => prodution, development, staging, test
 //This does not work comment it out before you build
 // DEVELOPER TOOLS
-if (process.env.NODE_ENV !== "production") {
-  // add object to end of array menu
-  menuTemplate.push({
-    label: "View",
-    submenu: [
-      //predefined role
-      { role: "reload" },
-      {
-        label: "Toggle Developer Tools",
-        accelerator:
-          process.platform === "darwin" ? "Command+Alt+I" : "Ctrl+Shift+I",
-        click(item, focusedWindow) {
-          focusedWindow.toggleDevTools();
-        },
-      },
-    ],
-  });
-}
+// if (process.env.NODE_ENV !== "production") {
+//   // add object to end of array menu
+//   menuTemplate.push({
+//     label: "View",
+//     submenu: [
+//       //predefined role
+//       { role: "reload" },
+//       {
+//         label: "Toggle Developer Tools",
+//         accelerator:
+//           process.platform === "darwin" ? "Command+Alt+I" : "Ctrl+Shift+I",
+//         click(item, focusedWindow) {
+//           focusedWindow.toggleDevTools();
+//         },
+//       },
+//     ],
+//   });
+// }
 
 //###################################################################
 //###################################################################
