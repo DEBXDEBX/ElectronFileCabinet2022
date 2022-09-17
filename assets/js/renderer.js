@@ -1236,6 +1236,7 @@ window.api.handleShowAlert((event, { message, msgType }) => {
   display.showAlert(message, msgType);
 });
 window.api.handleShowSettingsForm((event, noData) => {
+  clickAudio.play();
   loadUpSettingsForm();
   display.showSettingsForm();
 });
@@ -1391,7 +1392,7 @@ window.api.handleSetDeleteMode((event, deleteModeBool) => {
   $("#myModal").modal("hide");
   // set the delete mode to true or false
   deleteMode = deleteModeBool;
-  clickAudio.play();
+  btnAudio.play();
   let paintMain = false;
   let mainText;
   let subText;
