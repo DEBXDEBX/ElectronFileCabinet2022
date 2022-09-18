@@ -1309,8 +1309,8 @@ window.api.handleNewFileCabinet((event, { name, path }) => {
   renderFileCabs();
 });
 
-window.api.handleOpenFile((event, { name, fileNamePath, mainFolderArray }) => {
-  if (!name || !fileNamePath) {
+window.api.handleOpenFile((event, { name, filePath, mainFolderArray }) => {
+  if (!name || !filePath) {
     wrongAudio.play();
     display.showAlert("Error creating file cabinet!", "error");
     return;
@@ -1318,7 +1318,7 @@ window.api.handleOpenFile((event, { name, fileNamePath, mainFolderArray }) => {
   let pathIsTaken = false;
 
   for (const fileCab of fileCabArray) {
-    if (fileCab.fileNamePath === fileNamePath) {
+    if (fileCab.fileNamePath === filePath) {
       pathIsTaken = true;
     }
   }
@@ -1345,7 +1345,8 @@ window.api.handleOpenFile((event, { name, fileNamePath, mainFolderArray }) => {
     return;
   }
   addAudio.play();
-  const newfileCab = new FileCabinet(name, fileNamePath, mainFolderArray);
+  const newfileCab = new FileCabinet(name, filePath, mainFolderArray);
+  console.log(newfileCab);
   fileCabArray.push(newfileCab);
   renderFileCabs();
 });
