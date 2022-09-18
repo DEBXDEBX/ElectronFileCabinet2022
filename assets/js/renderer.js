@@ -1346,7 +1346,6 @@ window.api.handleOpenFile((event, { name, filePath, mainFolderArray }) => {
   }
   addAudio.play();
   const newfileCab = new FileCabinet(name, filePath, mainFolderArray);
-  console.log(newfileCab);
   fileCabArray.push(newfileCab);
   renderFileCabs();
 });
