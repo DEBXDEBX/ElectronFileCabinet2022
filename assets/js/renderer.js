@@ -73,9 +73,7 @@ function sendAutoLoadFilesToNode(filePaths) {
 // Helper functions
 //*************************************************** */
 // **************************************************
-function save() {
-  window.api.saveFileCabinet(fileCabArray[fcI]);
-}
+
 //*************************************************** */
 function removeActiveClass(element) {
   if (element) {
@@ -279,7 +277,7 @@ function handleFilePath(imagePath) {
       nI
     ].imagePath = imagePath;
     // write to file
-    save();
+    saveFileCabinet(fileCabArray[fcI]);
     addImageAudio.play();
     display.showAlert("A new image was added to the note!", "success");
   }
@@ -390,7 +388,7 @@ el.renameFileCabSubmitBtn.addEventListener("click", (e) => {
   //sort the array
   sortArrayByName(fileCabArray);
   // write to file
-  save();
+  saveFileCabinet(fileCabArray[fcI]);
   addAudio.play();
   display.showAlert(
     `You renamed the file cabinet to ${newName}`,
@@ -455,7 +453,7 @@ el.mainFolderList.addEventListener("click", (e) => {
         // DELETE MAIN folder
         fileCabArray[fcI].mainFolderArray.splice(deleteIndex, 1);
         // write to file
-        save();
+        saveFileCabinet(fileCabArray[fcI]);
         deleteAudio.play();
         display.showAlert("Main folder deleted!", "success");
         renderMainFolders();
@@ -540,7 +538,7 @@ el.addMainFolderSubmitBtn.addEventListener("click", (e) => {
     // sort main folder array by name
     sortArrayByName(mainFolderArray);
     // save file cab
-    save();
+    saveFileCabinet(fileCabArray[fcI]);
     addAudio.play();
     display.showAlert("A new main folder was added!", "success", 1500);
     // reset form
@@ -585,7 +583,7 @@ el.renameMainFolderBtn.addEventListener("click", (e) => {
     // sort main folder array by name
     sortArrayByName(fileCabArray[fcI].mainFolderArray);
     // save file cab
-    save();
+    saveFileCabinet(fileCabArray[fcI]);
     addAudio.play();
     display.showAlert(
       `You renamed the folder to ${mainFolderName}!`,
@@ -657,7 +655,7 @@ el.subFolderList.addEventListener("click", (e) => {
           1
         );
         // write to file
-        save();
+        saveFileCabinet(fileCabArray[fcI]);
         deleteAudio.play();
         display.showAlert("Sub folder deleted!", "success");
         renderSubFolders();
@@ -736,7 +734,7 @@ el.addSubFolderSubmitBtn.addEventListener("click", (e) => {
     // sort sub folder array by name
     sortArrayByName(mainFolderArray[mfI].subFolderArray);
     // write to file
-    save();
+    saveFileCabinet(fileCabArray[fcI]);
     addAudio.play();
     display.showAlert("A new sub folder was added!", "success", 1500);
     // reset form
@@ -783,7 +781,7 @@ el.renameSubfolderSubmitBtn.addEventListener("click", (e) => {
     // sort sub folder array by name
     sortArrayByName(fileCabArray[fcI].mainFolderArray[mfI].subFolderArray);
     // save file cab
-    save();
+    saveFileCabinet(fileCabArray[fcI]);
     addAudio.play();
     display.showAlert(`You renamed the folder to ${subName}!`, "success", 1500);
     // hide form
@@ -856,7 +854,7 @@ el.noteList.addEventListener("click", (e) => {
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
     // write to file
-    save();
+    saveFileCabinet(fileCabArray[fcI]);
     // redisplay
     // send note array to display
     renderNotes();
@@ -885,7 +883,7 @@ el.noteList.addEventListener("click", (e) => {
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
     // write to file
-    save();
+    saveFileCabinet(fileCabArray[fcI]);
     // redisplay
     // send note array to display
     renderNotes();
@@ -922,7 +920,7 @@ el.noteList.addEventListener("click", (e) => {
           sfI
         ].noteArray.splice(deleteIndex, 1);
         // write to file
-        save();
+        saveFileCabinet(fileCabArray[fcI]);
         // reasign current note
         nI = -243;
         deleteAudio.play();
@@ -965,7 +963,7 @@ el.noteList.addEventListener("click", (e) => {
     if (e.shiftKey) {
       selectedNote.imagePath = null;
       // write to file
-      save();
+      saveFileCabinet(fileCabArray[fcI]);
       // reasign current note
       nI = -243;
       deleteAudio.play();
@@ -1023,7 +1021,7 @@ el.addNoteSubmitBtn.addEventListener("click", (e) => {
   // push note into note array
   mainFolderArray[mfI].subFolderArray[sfI].noteArray.push(newNote);
   // write to file
-  save();
+  saveFileCabinet(fileCabArray[fcI]);
   addAudio.play();
   el.noteTextAreaInput.value = "";
   display.showAlert("A new note was added!", "success", 900);
@@ -1087,7 +1085,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
   addAudio.play();
 
   // write to file
-  save();
+  saveFileCabinet(fileCabArray[fcI]);
   renderNotes();
 });
 
