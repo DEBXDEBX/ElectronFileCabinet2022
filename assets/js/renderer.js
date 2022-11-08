@@ -1,18 +1,5 @@
 "use strict";
 
-// Select audio files
-const addAudio = document.querySelector("#addAudio");
-const addImageAudio = document.querySelector("#addImageAudio");
-const deleteAudio = document.querySelector("#deleteAudio");
-const warningEmptyAudio = document.querySelector("#warningEmptyAudio");
-const warningSelectAudio = document.querySelector("#warningSelectAudio");
-const warningNameTakenAudio = document.querySelector("#warningNameTakenAudio");
-const tabAudio = document.querySelector("#tabAudio");
-const clickAudio = document.querySelector("#clickAudio");
-const btnAudio = document.querySelector("#btnAudio");
-const cancelAudio = document.querySelector("#cancelAudio");
-const wrongAudio = document.querySelector("#wrongAudio");
-
 // Global variable's
 // current File Cab Index
 let fcI = -243;
@@ -31,6 +18,8 @@ let currentTheme = "Dark";
 let deleteMode = false;
 // create elements object
 const el = new Elements();
+// create audio object
+const sound = new Audio();
 // Pass elements to display
 const display = new Display(el, $);
 
@@ -119,7 +108,7 @@ function pushFileSettingsContainer(filePath) {
   }
 
   if (isTaken) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     display.showAlert("That file is already loaded!", "error");
     return;
   }
@@ -264,7 +253,7 @@ function mapNamesOut(array) {
 // *******************************************************************
 function handleFilePath(imagePath) {
   if (!imagePath) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter a path in the name area!", "error");
     return;
   }
@@ -278,7 +267,7 @@ function handleFilePath(imagePath) {
     ].imagePath = imagePath;
     // write to file
     saveFileCabinet(fileCabArray[fcI]);
-    addImageAudio.play();
+    sound.addImageAudio.play();
     display.showAlert("A new image was added to the note!", "success");
   }
 } // End handleFilePath(imagePath)
@@ -316,7 +305,7 @@ el.fileCabList.addEventListener("click", (e) => {
   // if shift is held down rename fileCab
   if (e.shiftKey) {
     // get the index from the html
-    clickAudio.play();
+    sound.clickAudio.play();
     let index = e.target.dataset.index;
     index = parseInt(index);
     if (isNaN(index)) {
@@ -348,7 +337,7 @@ el.fileCabList.addEventListener("click", (e) => {
       return;
     }
     fcI = index;
-    tabAudio.play();
+    sound.tabAudio.play();
     renderMainFolders();
   }
 }); // End
@@ -357,7 +346,7 @@ el.fileCabList.addEventListener("click", (e) => {
 el.renameFileCabSubmitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (!deleteMode) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert(
       "You have to enter Edit and Delete mode to rename a file cabinet!",
       "error"
@@ -368,13 +357,13 @@ el.renameFileCabSubmitBtn.addEventListener("click", (e) => {
   const newName = el.fileCabRenameInput.value;
   //check for empty string
   if (!newName) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter a name for the file cabinet!", "error");
     return;
   }
   if (isNameInArray(newName, fileCabArray)) {
     // alert and return
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     display.showAlert("That name is already taken!", "error");
     // set time out to focus
     setTimeout(function () {
@@ -389,7 +378,7 @@ el.renameFileCabSubmitBtn.addEventListener("click", (e) => {
   sortArrayByName(fileCabArray);
   // write to file
   saveFileCabinet(fileCabArray[fcI]);
-  addAudio.play();
+  sound.addAudio.play();
   display.showAlert(
     `You renamed the file cabinet to ${newName}`,
     "success",
@@ -404,7 +393,7 @@ el.renameFileCabSubmitBtn.addEventListener("click", (e) => {
 
 // when You click on the rename File Cab cancel Btn in the form ************************
 el.renameFileCabCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   // reset form
   el.renameFileCabForm.reset();
   // hide form
@@ -454,13 +443,13 @@ el.mainFolderList.addEventListener("click", (e) => {
         fileCabArray[fcI].mainFolderArray.splice(deleteIndex, 1);
         // write to file
         saveFileCabinet(fileCabArray[fcI]);
-        deleteAudio.play();
+        sound.deleteAudio.play();
         display.showAlert("Main folder deleted!", "success");
         renderMainFolders();
         // return;
         return;
       } else {
-        warningEmptyAudio.play();
+        sound.warningEmptyAudio.play();
         display.showAlert(
           "You have to hold down the control key to make a deletion!",
           "error"
@@ -489,7 +478,7 @@ el.mainFolderList.addEventListener("click", (e) => {
     }
     mfI = index;
 
-    tabAudio.play();
+    sound.tabAudio.play();
     renderSubFolders();
     return;
   }
@@ -497,7 +486,7 @@ el.mainFolderList.addEventListener("click", (e) => {
 
 // when You click on the +/icon in the main folder heading *********
 el.mainFolderAddIcon.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
 
   el.mainFolderNameInput.value = "";
   // show form
@@ -518,13 +507,13 @@ el.addMainFolderSubmitBtn.addEventListener("click", (e) => {
   // check if text is empty
 
   if (!mainFolderName) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter a name for the Main Folder!", "error");
     return;
   }
   // check for taken name
   if (isNameInArray(mainFolderName, mainFolderArray)) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     display.showAlert("That name is already taken!", "error");
     // set time out to focus
     setTimeout(function () {
@@ -539,7 +528,7 @@ el.addMainFolderSubmitBtn.addEventListener("click", (e) => {
     sortArrayByName(mainFolderArray);
     // save file cab
     saveFileCabinet(fileCabArray[fcI]);
-    addAudio.play();
+    sound.addAudio.play();
     display.showAlert("A new main folder was added!", "success", 1500);
     // reset form
     el.mainFolderForm.reset();
@@ -551,7 +540,7 @@ el.addMainFolderSubmitBtn.addEventListener("click", (e) => {
 el.renameMainFolderBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (!deleteMode) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert(
       "You have to enter Edit and Delete mode to rename a main folder!",
       "error"
@@ -562,14 +551,14 @@ el.renameMainFolderBtn.addEventListener("click", (e) => {
   const mainFolderName = el.mainFolderNameInput.value.trim();
   // check if text is empty
   if (!mainFolderName) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter a name for the Main Folder!", "error");
     return;
   }
 
   // check for taken name
   if (isNameInArray(mainFolderName, fileCabArray[fcI].mainFolderArray)) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     display.showAlert("That name is already taken!", "error");
     // set time out to focus
     setTimeout(function () {
@@ -584,7 +573,7 @@ el.renameMainFolderBtn.addEventListener("click", (e) => {
     sortArrayByName(fileCabArray[fcI].mainFolderArray);
     // save file cab
     saveFileCabinet(fileCabArray[fcI]);
-    addAudio.play();
+    sound.addAudio.play();
     display.showAlert(
       `You renamed the folder to ${mainFolderName}!`,
       "success",
@@ -598,7 +587,7 @@ el.renameMainFolderBtn.addEventListener("click", (e) => {
 });
 // when You click on cancel btn on the main folder form ****************
 el.mainFolderCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   // reset form
   el.mainFolderForm.reset();
   // hide form
@@ -656,12 +645,12 @@ el.subFolderList.addEventListener("click", (e) => {
         );
         // write to file
         saveFileCabinet(fileCabArray[fcI]);
-        deleteAudio.play();
+        sound.deleteAudio.play();
         display.showAlert("Sub folder deleted!", "success");
         renderSubFolders();
         return;
       } else {
-        warningEmptyAudio.play();
+        sound.warningEmptyAudio.play();
         display.showAlert(
           "You have to hold down the control key to make a deletion!",
           "error"
@@ -687,7 +676,7 @@ el.subFolderList.addEventListener("click", (e) => {
     }
     sfI = index;
 
-    tabAudio.play();
+    sound.tabAudio.play();
     // send the note array to the Display
     renderNotes();
     return;
@@ -696,7 +685,7 @@ el.subFolderList.addEventListener("click", (e) => {
 
 // When You click +/icon in the subfolder heading ***************************
 el.subFolderAddIcon.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   el.subFolderNameInput.value = "";
   // show form
   display.showSubFolderForm();
@@ -715,13 +704,13 @@ el.addSubFolderSubmitBtn.addEventListener("click", (e) => {
   const subFolderName = el.subFolderNameInput.value.trim();
   // check for empty string
   if (!subFolderName) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter a name for the Sub Folder!", "error");
     return;
   }
   // check for taken name
   if (isNameInArray(subFolderName, mainFolderArray[mfI].subFolderArray)) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     display.showAlert("That name is already taken!", "error");
     // set time out to focus
     setTimeout(function () {
@@ -735,7 +724,7 @@ el.addSubFolderSubmitBtn.addEventListener("click", (e) => {
     sortArrayByName(mainFolderArray[mfI].subFolderArray);
     // write to file
     saveFileCabinet(fileCabArray[fcI]);
-    addAudio.play();
+    sound.addAudio.play();
     display.showAlert("A new sub folder was added!", "success", 1500);
     // reset form
     el.subFolderForm.reset();
@@ -746,7 +735,7 @@ el.addSubFolderSubmitBtn.addEventListener("click", (e) => {
 el.renameSubfolderSubmitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (!deleteMode) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert(
       "You have to enter Edit and Delete mode to rename a sub folder!",
       "error"
@@ -757,7 +746,7 @@ el.renameSubfolderSubmitBtn.addEventListener("click", (e) => {
   const subName = el.subFolderNameInput.value.trim();
   // check if text is empty
   if (!subName) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter a name for the Main Folder!", "error");
     return;
   }
@@ -769,7 +758,7 @@ el.renameSubfolderSubmitBtn.addEventListener("click", (e) => {
       fileCabArray[fcI].mainFolderArray[mfI].subFolderArray
     )
   ) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     display.showAlert("That name is already taken!", "error");
     el.subFolderNameInput.focus();
   } else {
@@ -782,7 +771,7 @@ el.renameSubfolderSubmitBtn.addEventListener("click", (e) => {
     sortArrayByName(fileCabArray[fcI].mainFolderArray[mfI].subFolderArray);
     // save file cab
     saveFileCabinet(fileCabArray[fcI]);
-    addAudio.play();
+    sound.addAudio.play();
     display.showAlert(`You renamed the folder to ${subName}!`, "success", 1500);
     // hide form
     // reset form
@@ -794,7 +783,7 @@ el.renameSubfolderSubmitBtn.addEventListener("click", (e) => {
 
 // when You click the cancel btn in the sub folder form
 el.subFolderCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   // reset form
   el.subFolderForm.reset();
   // hide form
@@ -852,7 +841,7 @@ el.noteList.addEventListener("click", (e) => {
       fileCabArray[fcI].mainFolderArray[mfI].subFolderArray[sfI].noteArray;
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    btnAudio.play();
+    sound.btnAudio.play();
     // write to file
     saveFileCabinet(fileCabArray[fcI]);
     // redisplay
@@ -881,7 +870,7 @@ el.noteList.addEventListener("click", (e) => {
     const moveTo = index + 1;
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    btnAudio.play();
+    sound.btnAudio.play();
     // write to file
     saveFileCabinet(fileCabArray[fcI]);
     // redisplay
@@ -898,7 +887,7 @@ el.noteList.addEventListener("click", (e) => {
 
     // check if control was down, if so delete note
     if (!deleteMode) {
-      warningEmptyAudio.play();
+      sound.warningEmptyAudio.play();
       display.showAlert(
         "You have to select Edit and Delete mode in menu to make a deletion!",
         "error"
@@ -906,7 +895,7 @@ el.noteList.addEventListener("click", (e) => {
       return;
     }
     if (!e.ctrlKey) {
-      warningEmptyAudio.play();
+      sound.warningEmptyAudio.play();
       display.showAlert(
         "You have to hold down ctrl key to make a deletion!",
         "error"
@@ -923,7 +912,7 @@ el.noteList.addEventListener("click", (e) => {
         saveFileCabinet(fileCabArray[fcI]);
         // reasign current note
         nI = -243;
-        deleteAudio.play();
+        sound.deleteAudio.play();
         display.showAlert("Note deleted!", "success");
         // send note array to display
         renderNotes();
@@ -966,7 +955,7 @@ el.noteList.addEventListener("click", (e) => {
       saveFileCabinet(fileCabArray[fcI]);
       // reasign current note
       nI = -243;
-      deleteAudio.play();
+      sound.deleteAudio.play();
       display.showAlert("Removed the image from note!", "success");
       // send note array to display
       renderNotes();
@@ -989,13 +978,13 @@ el.noteList.addEventListener("click", (e) => {
       fileCabArray[fcI].mainFolderArray[mfI].subFolderArray[sfI].noteArray[nI];
 
     el.noteModalTextArea.value = note.text;
-    clickAudio.play();
+    sound.clickAudio.play();
     return;
   }
 }); // End
 // when You click the + in the Note Heading
 el.noteAddIcon.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   display.showNoteForm();
 
   // set time out to focus
@@ -1012,7 +1001,7 @@ el.addNoteSubmitBtn.addEventListener("click", (e) => {
   const noteText = el.noteTextAreaInput.value.trim();
   // check if text is empty
   if (!noteText) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter note in the text area!", "error");
     return;
   }
@@ -1022,7 +1011,7 @@ el.addNoteSubmitBtn.addEventListener("click", (e) => {
   mainFolderArray[mfI].subFolderArray[sfI].noteArray.push(newNote);
   // write to file
   saveFileCabinet(fileCabArray[fcI]);
-  addAudio.play();
+  sound.addAudio.play();
   el.noteTextAreaInput.value = "";
   display.showAlert("A new note was added!", "success", 900);
   nI = -243;
@@ -1030,14 +1019,14 @@ el.addNoteSubmitBtn.addEventListener("click", (e) => {
 }); // End
 // when You click the cancel btn in the note form
 el.noteCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   el.noteForm.reset();
   display.displayNone(el.noteForm);
 }); // End
 
 // when You click the clear btn in the note form
 el.noteClearTextAreaBtn.addEventListener("click", (e) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   // clear the text Area
   el.noteTextAreaInput.value = "";
   // set time out to focus
@@ -1048,7 +1037,7 @@ el.noteClearTextAreaBtn.addEventListener("click", (e) => {
 
 // when you click on the add Date btn in the note form
 el.noteAddDateBtn.addEventListener("click", (e) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   const date = new Date();
   el.noteTextAreaInput.value = date.toDateString();
   // set time out to focus
@@ -1063,13 +1052,13 @@ el.noteAddDateBtn.addEventListener("click", (e) => {
 // when you click on the save edit btn in the modal
 el.saveEditedNoteBtn.addEventListener("click", (e) => {
   if (fcI < 0 || isNaN(fcI)) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     return;
   }
   const newNoteText = el.noteModalTextArea.value.trim();
   // check if text is empty
   if (!newNoteText) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter text in the text area!", "error");
     return;
   }
@@ -1082,7 +1071,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
     note.text = newNoteText;
   }
   display.showAlert("Note updated!", "success", 3000);
-  addAudio.play();
+  sound.addAudio.play();
 
   // write to file
   saveFileCabinet(fileCabArray[fcI]);
@@ -1091,7 +1080,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
 
 // when you click on the cancel Btn on the edit note form
 el.editNoteCloseBtn.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
 });
 // *************************************************************
 //  End Edit Note Code
@@ -1124,7 +1113,7 @@ el.saveSettingsSubmitBtn.addEventListener("click", (e) => {
 
   // save the object
   settingsStorage.saveSettings(settingsObj);
-  addAudio.play();
+  sound.addAudio.play();
   display.showAlert("Saving User Settings!", "success", 900);
   // reset form
   el.settingsForm.reset();
@@ -1146,7 +1135,7 @@ el.saveSettingsSubmitBtn.addEventListener("click", (e) => {
 
 // when You click on settings form cancel Btn
 el.settingsCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   // hide form
   display.displayNone(el.settingsForm);
   renderFileCabs();
@@ -1154,7 +1143,7 @@ el.settingsCancelBtn.addEventListener("click", (e) => {
 
 // when You click on settings form factory reset btn
 el.factoryResetBtn.addEventListener("click", (e) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   const settingsStorage = new SettingsStorage();
   settingsStorage.clearFileFromLocalStorage();
   loadUpSettingsForm();
@@ -1162,7 +1151,8 @@ el.factoryResetBtn.addEventListener("click", (e) => {
 
 // When You click on settings form add path to autoload Btn
 el.settingsAddPathBtn.addEventListener("click", async (e) => {
-  // addImageAudio.play();
+  // won't play 1st time ?
+  sound.addImageAudio.play();
   window.api.showOpenDialog();
 });
 
@@ -1180,7 +1170,7 @@ window.api.handleAuotLoadPaths((event, fileNames) => {
       settingsArrayContainer.push(filePath);
     }
   }
-  addImageAudio.play();
+  sound.addImageAudio.play();
   display.showAutoLoadList(settingsArrayContainer);
 });
 
@@ -1189,7 +1179,7 @@ el.autoLoadList.addEventListener("click", (e) => {
   // event delegation
   if (e.target.classList.contains("deleteFile")) {
     if (!deleteMode) {
-      warningEmptyAudio.play();
+      sound.warningEmptyAudio.play();
       display.showAlert(
         "You have to select Edit and Delete mode in menu to make a deletion",
         "error"
@@ -1197,7 +1187,7 @@ el.autoLoadList.addEventListener("click", (e) => {
       return;
     }
     if (!e.ctrlKey) {
-      warningEmptyAudio.play();
+      sound.warningEmptyAudio.play();
       display.showAlert(
         "You have to hold down ctrl key to make a deletion",
         "error"
@@ -1215,7 +1205,7 @@ el.autoLoadList.addEventListener("click", (e) => {
         }
         // delete path
         settingsArrayContainer.splice(deleteIndex, 1);
-        warningSelectAudio.play();
+        sound.warningSelectAudio.play();
         // update Form
         display.showAutoLoadList(settingsArrayContainer);
       }
@@ -1234,13 +1224,13 @@ window.api.handleShowAlert((event, { message, msgType }) => {
   display.showAlert(message, msgType);
 });
 window.api.handleShowSettingsForm((event, noData) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   loadUpSettingsForm();
   display.showSettingsForm();
 });
 
 window.api.handleFontSizeChange((event, fontSize) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   switch (fontSize) {
     case "x-small":
       el.root.style.fontSize = "10px";
@@ -1264,7 +1254,7 @@ window.api.handleFontSizeChange((event, fontSize) => {
 
 window.api.handleNewFileCabinet((event, { name, path }) => {
   if (!name || !path) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert("Error creating file cabinet!", "error");
     return;
   }
@@ -1304,14 +1294,14 @@ window.api.handleNewFileCabinet((event, { name, path }) => {
   // write to file
   // newfileCab.writeFileCabToHardDisk(fs, display);
   saveFileCabinet(newfileCab);
-  addAudio.play();
+  sound.addAudio.play();
   display.showAlert("A new file cabinet was added", "success", 1500);
   renderFileCabs();
 });
 
 window.api.handleOpenFile((event, { name, filePath, mainFolderArray }) => {
   if (!name || !filePath) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert("Error creating file cabinet!", "error");
     return;
   }
@@ -1324,7 +1314,7 @@ window.api.handleOpenFile((event, { name, filePath, mainFolderArray }) => {
   }
 
   if (pathIsTaken) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert("That file cabinet is already loaded", "error");
     return;
   }
@@ -1337,14 +1327,14 @@ window.api.handleOpenFile((event, { name, filePath, mainFolderArray }) => {
     }
   }
   if (nameIsTaken) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert(
       `A file cabinet called ${name} is already loaded`,
       "error"
     );
     return;
   }
-  addAudio.play();
+  sound.addAudio.play();
   const newfileCab = new FileCabinet(name, filePath, mainFolderArray);
   fileCabArray.push(newfileCab);
   renderFileCabs();
@@ -1353,7 +1343,7 @@ window.api.handleOpenFile((event, { name, filePath, mainFolderArray }) => {
 window.api.handleSetTheme((event, Theme) => {
   $("#myModal").modal("hide");
   // set te current theme
-  btnAudio.play();
+  sound.btnAudio.play();
   currentTheme = Theme;
   // check if delete mode is on, if so return
   if (deleteMode) {
@@ -1390,7 +1380,7 @@ window.api.handleSetDeleteMode((event, deleteModeBool) => {
   $("#myModal").modal("hide");
   // set the delete mode to true or false
   deleteMode = deleteModeBool;
-  btnAudio.play();
+  sound.btnAudio.play();
   let paintMain = false;
   let mainText;
   let subText;
@@ -1505,20 +1495,20 @@ window.api.handleSetDeleteMode((event, deleteModeBool) => {
 window.api.handleCloseSelectedFileCab((event, data) => {
   $("#myModal").modal("hide");
   if (fcI === -243 || isNaN(fcI)) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     renderFileCabs();
     display.showAlert("Please select a file cabinet to close!", "error");
     return;
   }
   // remove file cab from array
   fileCabArray.splice(fcI, 1);
-  cancelAudio.play();
+  sound.cancelAudio.play();
   renderFileCabs();
 });
 window.api.handleCloseAllFileCabs((event, data) => {
   $("#myModal").modal("hide");
   // setting the length to Zero emptys the array
   fileCabArray.length = 0;
-  cancelAudio.play();
+  sound.cancelAudio.play();
   renderFileCabs();
 });
