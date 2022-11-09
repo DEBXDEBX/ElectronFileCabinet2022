@@ -63,7 +63,7 @@ img {
 .active {
   color: white;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 3px 2px 4px white;
+  box-shadow: 5px 4px 9px black;
   transform: scale(1.1);
 }
 nav ul {
@@ -129,32 +129,6 @@ nav ul li:hover {
   padding: 14px;
   overflow: auto;
 }
-
-/* CODE FOR MESSAGES  */
-.success,
-.error {
-  padding: 20px;
-  text-align: center;
-  width: 100%;
-  border-radius: 25px;
-  margin: auto;
-}
-.error {
-  color: red;
-}
-.success {
-  color: #2de11d;
-}
-.black {
-  background-color: black;
-}
-.redBorder {
-  border: 20px solid red;
-}
-.greenBorder {
-  border: 20px solid #2de11d;
-}
-/* END CODE FOR MESSAGES  */
 
 #mainFolderForm,
 #subFolderForm,
@@ -300,3 +274,29 @@ input[type="checkbox"]:hover {
   display: flex;
   justify-content: center;
 }
+
+/* CODE FOR MESSAGES  */
+.success,
+.error {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  border-radius: 25px;
+  margin: auto;
+}
+.error {
+  color: red;
+}
+.success {
+  color: #2de11d;
+}
+.black {
+  background-color: black;
+}
+.redBorder {
+  border: 20px solid red;
+}
+.greenBorder {
+  border: 20px solid #2de11d;
+}
+/* END CODE FOR MESSAGES  */
